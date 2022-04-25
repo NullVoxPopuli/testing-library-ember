@@ -1,0 +1,107 @@
+name: CI
+on:
+  pull_request: null
+  push:
+    branches:
+      - main
+      - master
+  schedule:
+    - cron: 0 3 * * 0
+env:
+  CI: true
+
+jobs:
+  tests:
+    name: Tests
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: volta-cli/action@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 6.32.1
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Test with ${{ matrix.node }}
+        run: pnpm --filter test-app run test:ember
+  typescript-compatibility:
+    name: Type checking - ${{ matrix.typescript-scenario }}
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: true
+      matrix:
+        typescript-scenario:
+          - typescript@4.2
+          - typescript@4.3
+          - typescript@4.4
+          - typescript@4.5
+          - typescript@4.6
+          - typescript@next
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: volta-cli/action@v1
+        with:
+          node-version: 12.x
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 6.32.1
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Update TS Version
+        run: pnpm add --save-dev ${{ matrix.typescript-scenario }}
+        working-directory: test-app
+      - name: Type checking
+        run: pnpm --filter test-app exec tsc --build
+
+  publish:
+    name: Release
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    needs:
+      - tests
+      - typescript-compatibility
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+      - uses: volta-cli/action@v1
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.2.1
+        with:
+          version: 6.32.1
+      - name: Install Dependencies
+        run: pnpm install
+      - name: Release
+        run: ./node_modules/.bin/semantic-release
+        working-directory: ./testing-library
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
