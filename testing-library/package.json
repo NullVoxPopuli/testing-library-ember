@@ -1,0 +1,48 @@
+{
+  "name": "testing-library-ember",
+  "version": "0.0.0",
+  "description": "testing-library wrapper for ember",
+  "main": "index.js",
+  "scripts": {
+    "release": "semantic-release",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "build": "FORCE_COLOR=1 npm-run-all --aggregate-output --parallel \"build:*\"",
+    "build:docs": "cp ../README.md ./README.md",
+    "prepublishOnly": "pnpm run build"
+  },
+  "type": "module",
+  "browser": "./index.js",
+  "types": "./index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NullVoxPopuli/testing-library-ember.git"
+  },
+  "keywords": [
+    "ember",
+    "testing",
+    "testing-library",
+    "dom"
+  ],
+  "author": "NullVoxPopuli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NullVoxPopuli/testing-library-ember/issues"
+  },
+  "homepage": "https://github.com/NullVoxPopuli/testing-library-ember#readme",
+  "peerDependencies": {
+    "@ember/test-helpers": "^2.0.0",
+    "@testing-library/dom": "^8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@ember/test-helpers": "^2.0.0",
+    "@nullvoxpopuli/eslint-configs": "^2.2.14",
+    "@testing-library/dom": "^8.13.0",
+    "typescript": "^4.6.3"
+  },
+  "volta": {
+    "node": "16.14.2"
+  }
+}
