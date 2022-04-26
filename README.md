@@ -45,9 +45,11 @@ module(`Demo`, function(hooks) {
 
     await fireEvent.click(button);
 
-    assert.strictEqual(screen.getByText('Output'), )
+    assert.strictEqual(screen.getByText('Output'), 'the new output');
   });
 });
 ```
+
+See the tests in test-app for examples
 
 
