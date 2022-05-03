@@ -84,7 +84,7 @@ importers:
       ember-page-title: ^7.0.0
       ember-qunit: ^5.1.5
       ember-resolver: ^8.0.3
-      ember-source: ~4.3.0
+      ember-source: ~4.4.0
       ember-template-lint: ^4.3.0
       eslint: ^7.32.0
       eslint-config-prettier: ^8.5.0
@@ -148,7 +148,7 @@ importers:
       ember-page-title: 7.0.0
       ember-qunit: 5.1.5_68c27f1128862f3e803be47c98c5e80a
       ember-resolver: 8.0.3
-      ember-source: 4.3.0_webpack@5.72.0
+      ember-source: 4.4.0_webpack@5.72.0
       ember-template-lint: 4.5.0
       eslint: 7.32.0
       eslint-config-prettier: 8.5.0_eslint@7.32.0
@@ -5732,6 +5732,15 @@ packages:
       - supports-color
     dev: true
 
+  /ember-cli-typescript-blueprint-polyfill/0.1.0:
+    resolution: {integrity: sha512-g0weUTOnHmPGqVZzkQTl3Nbk9fzEdFkEXydCs5mT1qBjXh8eQ6VlmjjGD5/998UXKuA0pLSCVVMbSp/linLzGA==}
+    dependencies:
+      chalk: 4.1.2
+      remove-types: 1.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /ember-cli-typescript/2.0.2:
     resolution: {integrity: sha512-7I5azCTxOgRDN8aSSnJZIKSqr+MGnT+jLTUbBYqF8wu6ojs2DUnTePxUcQMcvNh3Q3B1ySv7Q/uZFSjdU9gSjA==}
     engines: {node: 6.* || 8.* || >= 10.*}
@@ -6096,8 +6105,8 @@ packages:
       - encoding
     dev: true
 
-  /ember-source/4.3.0_webpack@5.72.0:
-    resolution: {integrity: sha512-WyAWRM1oOXBbj0mTeoIngzGDF41XGrlpJO6nQrcFwff6GN6ERRyeIyIhjU2yLRXWYIC3y6IrzRQUjS1PqqxZVw==}
+  /ember-source/4.4.0_webpack@5.72.0:
+    resolution: {integrity: sha512-o4jJko/2IRfGsyfje51nNYMQj+OusJph4CIGF+Yk9pmvoS0TbzKHKWlnFiIygTcnUiMHkG18FL9Z0LSd/Kgl5w==}
     engines: {node: '>= 12.*'}
     dependencies:
       '@babel/helper-module-imports': 7.16.7
@@ -6119,6 +6128,7 @@ packages:
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-path-utils: 1.0.0
       ember-cli-string-utils: 1.1.0
+      ember-cli-typescript-blueprint-polyfill: 0.1.0
       ember-cli-version-checker: 5.1.2
       ember-router-generator: 2.0.0
       inflection: 1.13.2
