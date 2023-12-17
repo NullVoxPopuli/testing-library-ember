@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: volta-cli/action@v4
         with:
           node-version: ${{ matrix.node }}
@@ -50,7 +50,7 @@ jobs:
           - typescript@4.6
           - typescript@next
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - uses: volta-cli/action@v4
@@ -83,7 +83,7 @@ jobs:
       - tests
       - typescript-compatibility
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: volta-cli/action@v4
