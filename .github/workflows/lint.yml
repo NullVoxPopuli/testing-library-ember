@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 15
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
     - uses: volta-cli/action@v4
     - name: Cache pnpm modules
       uses: actions/cache@v3
@@ -39,7 +39,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: volta-cli/action@v4
       - name: Cache pnpm modules
         uses: actions/cache@v3
@@ -63,7 +63,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: volta-cli/action@v4
       - name: Cache pnpm modules
         uses: actions/cache@v3
@@ -87,7 +87,7 @@ jobs:
     needs: [install_dependencies]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: volta-cli/action@v4
       - name: Cache pnpm modules
         uses: actions/cache@v3
@@ -114,7 +114,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0
 
