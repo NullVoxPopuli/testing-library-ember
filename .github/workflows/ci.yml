@@ -29,7 +29,7 @@ jobs:
             ${{ runner.os }}-
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 6.32.1
+          version: 6.35.1
       - name: Install Dependencies
         run: pnpm install
       - name: Test with ${{ matrix.node }}
@@ -65,7 +65,7 @@ jobs:
             ${{ runner.os }}-
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 6.32.1
+          version: 6.35.1
       - name: Install Dependencies
         run: pnpm install
       - name: Update TS Version
@@ -96,7 +96,7 @@ jobs:
             ${{ runner.os }}-
       - uses: pnpm/action-setup@v2.2.4
         with:
-          version: 6.32.1
+          version: 6.35.1
       - name: Install Dependencies
         run: pnpm install
       - name: Release
